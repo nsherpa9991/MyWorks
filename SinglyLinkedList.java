@@ -45,13 +45,48 @@ class SinglyLinkedList<T>{
         }
     }
 
+    public void remove(T data){
+        Node current = this.head;
+        Node afterCurrent = current.next;
+        Node previousNode = null;
+        while (current.data != data){
+            previousNode = current;
+            current = previousNode.next;
+            afterCurrent = current.next;
+        }if(current.next!= null){
+            if(current == this.head){
+                this.head = afterCurrent;
+                current.next = null;
+            }else {
+                previousNode.next = afterCurrent;
+                current.next = null;
+            }
+        }else {
+            current = null;
+        }
+        }
+
+    public void removeAll(){
+        this.head = null;
+    }
+
+    public T getHead(){
+        return this.head.data;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList<Integer> sl = new SinglyLinkedList<>();
         sl.add(20);
         sl.add(30);
         sl.add(40);
         sl.add(50);
+        sl.add(60);
+        sl.remove(40);
+        sl.remove(50);
+        sl.remove(20);
+        sl.remove(30);
         sl.print();
+        System.out.println(sl.getHead());
     }
 
 
